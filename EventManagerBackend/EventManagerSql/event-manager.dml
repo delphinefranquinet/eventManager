@@ -1,19 +1,12 @@
 
-insert into users values (default, 'Romain', 'Celen', '05/05/1993', 'romcel@monmail.com');
-insert into users values (default, 'Roman', 'Del Favero', '26/03/1996', 'romdel@monmail.com');
-insert into users values (default, 'Michael', 'Schumacher', '21/12/1969', 'schumi@monmail.com');
-insert into users values (default, 'Steffi', 'Graf', '14/06/1969', 'steffi@monmail.com');
-insert into users values (default, 'Paris', 'Hilton', '17/02/1981', 'pahil@monmail.com');
+insert into users values (default, 'Romain', 'Celen', '05/05/1993', 'romcel@monmail.com', '1234');
+insert into users values (default, 'Roman', 'Del Favero', '26/03/1996', 'romdel@monmail.com', '1234');
+insert into users values (default, 'Delphine', 'Franquinet', '09/06/1983', 'delfra@monmail.com', '1234');
+insert into users values (default, 'Zahraa', 'Al-Sudani', '10/10/1989', 'zahals@monmail.com', '1234');
 
-insert into login values ('romcel@monmail.com', 'romcel',1);
-insert into login values ('romdel@monmail.com', 'romdel',2);
-insert into login values ('schumi@monmail.com', 'schumi',3);
-insert into login values ('steffi@monmail.com', 'steffi',4);
-insert into login values ('pahil@monmail.com', 'pahil',5);
+insert into events values (default, 'Werchter Rock Festival', 'Werchter', '2019-06-27 14:00:00', '2019-06-30 02:00:00', 'Best rock festival in Europe', 1);
+insert into events values (default, 'Stage judo Vennes', 'Liège', '2019-07-15 08:00:00', '2019-07-19 20:00:00', 'Stage junior 6-18', 2);
 
-insert into status values (default,'private');
-insert into status values (default,'public');
-insert into status values (default,'public On Request');
 
-insert into event values (default, 1, 'Werchter Rock Festival', 'Werchter', '2019-06-27 14:00:00', '2019-06-30 02:00:00', 'Best rock festival in Europe', 1);
-insert into event values (default, 2, 'Stage judo Vennes', 'Liège', '2019-07-15 08:00:00', '2019-07-19 20:00:00', 'Stage junior 6-18', 2);
+insert into activities values (default, 'Concert Muse', 'Werchter', '2019-06-30 23:00:00', '2019-07-01 01:30:00', 'One top rock band', 1);
+insert into activities values (default, 'Concert Greata Van Fleet', 'Werchter', '2019-06-30 20:00:00', '2019-07-30 21:30:00', 'Led zeppelin like band', 1);
