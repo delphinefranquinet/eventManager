@@ -25,7 +25,7 @@ public class implementEventMangerRepository {
 	public List<Event> FindAllEvents() {
 
 		List<Event> events = new ArrayList<>();
-		String sql = "";
+		String sql = "Select * from events";
 
 		try (java.sql.Connection connection = java.sql.DriverManager.getConnection(url, user, password);
 				java.sql.PreparedStatement query = connection.prepareStatement(sql)) {
