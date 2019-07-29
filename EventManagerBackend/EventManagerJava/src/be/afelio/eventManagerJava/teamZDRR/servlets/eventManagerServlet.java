@@ -2,6 +2,7 @@ package be.afelio.eventManagerJava.teamZDRR.servlets;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.servlet.ServletConfig;
@@ -10,7 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import be.afelio.eventManagerJava.teamZDRR.beans.Event;
 import be.afelio.eventManagerJava.teamZDRR.impl.implementEventMangerRepository;
 
 @WebServlet("/*")
@@ -46,8 +51,22 @@ public class eventManagerServlet extends HttpServlet {
 		} 
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		HttpSession session = request.getSession(true);
+		String path = request.getPathInfo();
+		ObjectMapper mapper = new ObjectMapper();
+
+		if (path.startsWith("/home")) {
+
+			List<Event> events = repository.FindAllEvents();
+			System.out.println(events);
+			String json = mapper.writeValueAsString(events); // convertir en format json
+			setHeaders(response);
+			response.setContentType("application/json"); // le type du contenu est du json
+			response.setCharacterEncoding("UTF-8");// ce sera écrit en utf8
+			response.getWriter().write(json); // on écrit le json dans la réponse
+
+		} 
 	}
 
 	/**

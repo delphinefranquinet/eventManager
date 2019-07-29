@@ -1,6 +1,13 @@
 package be.afelio.eventManagerJava.teamZDRR.impl;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import be.afelio.eventManagerJava.teamZDRR.beans.Event;
+
 
 public class implementEventMangerRepository {
 	
@@ -15,6 +22,39 @@ public class implementEventMangerRepository {
 		this.url = url;
 	}
 	
+	public List<Event> FindAllEvents() {
+
+		List<Event> events = new ArrayList<>();
+		String sql = "";
+
+		try (java.sql.Connection connection = java.sql.DriverManager.getConnection(url, user, password);
+				java.sql.PreparedStatement query = connection.prepareStatement(sql)) {
+
+			try (ResultSet rs = query.executeQuery()) {
+
+				while (rs.next()) {
+					Event event = new Event();
+					event.setId(rs.getInt(1));
+					event.setName(rs.getString(2));
+					event.setDescription(rs.getString(3));
+
+					Timestamp timestamp = rs.getTimestamp(4); // récupérer le timestamp
+					LocalDateTime localDateTime = timestamp.toLocalDateTime(); // convertir Timestamp en localDateTime
+					event.setStartEvent(localDateTime); // stock l'information dans l'event
+
+					event.setEndEvent(rs.getTimestamp(5).toLocalDateTime()); // idem 3 lignes
+					event.setIdResponsable(rs.getInt(6));
+
+					events.add(event);
+				}
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		return events;
+	} 
+
 
 /*
 	public User connexion(String login, String mot_de_passe) {
