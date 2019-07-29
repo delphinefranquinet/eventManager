@@ -9,19 +9,20 @@ public class Activity {
 	
 	private Integer id;
 	private String name;
-	private String description;
+	private String place;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDateTime startActivity;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDateTime endActivity;
+	private String description;
 	private Integer idEvent;
 	
 	@Override
 	public String toString() {
-		return "Activity [id=" + id + ", name=" + name + ", description=" + description + ", startActivity="
-				+ startActivity + ", endActivity=" + endActivity + ", idEvent=" + idEvent + "]";
+		return "Activity [id=" + id + ", name=" + name + ", place=" + place + ", startActivity=" + startActivity
+				+ ", endActivity=" + endActivity + ", description=" + description + ", idEvent=" + idEvent + "]";
 	}
 	public Integer getId() {
 		return id;
@@ -35,11 +36,11 @@ public class Activity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
+	public String getPlace() {
+		return place;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPlace(String place) {
+		this.place = place;
 	}
 	public LocalDateTime getStartActivity() {
 		return startActivity;
@@ -53,12 +54,19 @@ public class Activity {
 	public void setEndActivity(LocalDateTime endActivity) {
 		this.endActivity = endActivity;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public Integer getIdEvent() {
 		return idEvent;
 	}
 	public void setIdEvent(Integer idEvent) {
 		this.idEvent = idEvent;
 	}
+	
 	
 	
 
