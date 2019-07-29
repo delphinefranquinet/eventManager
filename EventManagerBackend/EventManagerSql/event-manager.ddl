@@ -1,5 +1,5 @@
 
-CREATE TABLE user (
+CREATE TABLE users (
   user_id serial PRIMARY KEY ,
   user_name varchar(50) NOT NULL ,
   user_firstname varchar(50) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE user (
   constraint UK_Name_Firstname_Birthdate UNIQUE (user_name, user_firstname, user_birthdate)
 );
 
-CREATE TABLE event (
+CREATE TABLE events (
   event_id serial PRIMARY KEY ,
   event_name varchar(100) NOT NULL ,
   event_place varchar(100) NOT NULL,
@@ -17,12 +17,12 @@ CREATE TABLE event (
   event_dateTimeEnd TIMESTAMPtz,
   event_description varchar (400),
   event_userManager int,
-  constraint UK_Name_Place_DateTime UNIQUE (event_name, event_place, event_dateTimeStart),
+  constraint UK_event_Name_Place_DateTime UNIQUE (event_name, event_place, event_dateTimeStart),
   constraint CheckTimeRelation check ( (event_dateTimeEnd - event_dateTimeStart) >= interval '00:00:00'),
-  foreign key (event_userManager) references user (user_id)
+  foreign key (event_userManager) references users (user_id)
 );
 
-CREATE TABLE activity (
+CREATE TABLE activities (
   activity_id serial PRIMARY KEY ,
   activity_name varchar(100) NOT NULL ,
   activity_place varchar(20) NOT NULL,
@@ -30,15 +30,15 @@ CREATE TABLE activity (
   activity_dateTimeEnd TIMESTAMPtz,
   activity_description varchar (400),
   event_id int,
-  constraint UK_Name_Place_DateTime UNIQUE (activity_name, activity_place, activity_dateTimeStart),
+  constraint UK_activity_Name_Place_DateTime UNIQUE (activity_name, activity_place, activity_dateTimeStart),
   constraint CheckTimeRelation check ( (activity_dateTimeEnd - activity_dateTimeStart) >= interval '00:00:00'),
-  foreign key (event_id) references event (event_id)
+  foreign key (event_id) references events (event_id)
 );
 
 CREATE TABLE inscriptionActivity (
   inscription_id serial PRIMARY KEY,
   user_id int,
   activity_id int,
-  foreign key (user_id) references user (user_id),
-  foreign key (activity_id) references event (activity_id)
+  foreign key (user_id) references users (user_id),
+  foreign key (activity_id) references activities (activity_id)
 );
