@@ -14,22 +14,22 @@ public class Event implements Serializable{
 	
 	private Integer id;
 	private String name;
-	private String description;
+	private String place;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDateTime startEvent;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDateTime endEvent;
-	private Integer idResponsable;
+	private String description;
+	private Integer idManager;
 	private List<Activity> activities = new ArrayList<>();
-	
-	
 	
 	@Override
 	public String toString() {
-		return "Event [id=" + id + ", name=" + name + ", description=" + description + ", startEvent=" + startEvent
-				+ ", endEvent=" + endEvent + ", idResponsable=" + idResponsable + ", activities=" + activities + "]";
+		return "Event [id=" + id + ", name=" + name + ", place=" + place + ", startEvent=" + startEvent + ", endEvent="
+				+ endEvent + ", description=" + description + ", idManager=" + idManager + ", activities=" + activities
+				+ "]";
 	}
 	public Integer getId() {
 		return id;
@@ -43,11 +43,11 @@ public class Event implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
+	public String getPlace() {
+		return place;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setPlace(String place) {
+		this.place = place;
 	}
 	public LocalDateTime getStartEvent() {
 		return startEvent;
@@ -61,11 +61,17 @@ public class Event implements Serializable{
 	public void setEndEvent(LocalDateTime endEvent) {
 		this.endEvent = endEvent;
 	}
-	public Integer getIdResponsable() {
-		return idResponsable;
+	public String getDescription() {
+		return description;
 	}
-	public void setIdResponsable(Integer idResponsable) {
-		this.idResponsable = idResponsable;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Integer getIdManager() {
+		return idManager;
+	}
+	public void setIdManager(Integer idManager) {
+		this.idManager = idManager;
 	}
 	public List<Activity> getActivities() {
 		return activities;
@@ -76,6 +82,8 @@ public class Event implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+		
 	
 	
 }
